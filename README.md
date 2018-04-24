@@ -14,14 +14,14 @@ A Vue.js project for topic
 ## 目录结构
 
 > build
-> src
+> <br> src
 >> common
->> components
->> filter
->> pages
+>> <br> components
+>> <br> filter
+>> <br> pages
 >>> demo
 >>>> assets
->>>> static
->>>> App.vue
->>>> main.js
->>>> template.html
+>>>> <br> static
+>>>> <br> App.vue
+>>>> <br> main.js
+>>>> <br> template.html
