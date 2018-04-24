@@ -1,0 +1,56 @@
+.p-circle, .circle, .percent {
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+}
+
+.p-circle {
+    position: relative;
+    background-color: #CCC;
+    .circle {
+        box-sizing: border-box;
+        border: 0.08rem solid #CCC;
+        clip: rect(0, 0.8rem, 0.8rem, 0.4rem);
+        transform: rotate(180deg);
+    }
+    .clip-auto {
+        clip: rect(auto, auto, auto, auto);
+    }
+    .percent {
+        box-sizing: border-box;
+        top: -0.08rem;
+        left: -0.08rem;
+        border: 0.08rem solid #448FF2;
+    }
+    .left {
+        transition: transform ease;
+        clip: rect(0, 0.4rem, 0.8rem, 0);
+    }
+    .right {
+        clip: rect(0, 0.8rem, 0.8rem, 0.4rem);
+    }
+    .wth0 {
+        width: 0;
+    }
+    .num {
+        font-size: 0.25rem;
+        position: absolute;
+        box-sizing: border-box;
+        width: 0.72rem;
+        height: 0.72rem;
+        line-height: 0.72rem;
+        text-align: center;
+        left: 0.04rem;
+        top: 0.04rem;
+        border-radius: 50%;
+        background-color: #FFF;
+        z-index: 1;
+        color: #D0D0D0;
+    }
+    .p-circle-process {
+        .num {
+            color: #448FF2;
+        }
+    }
+}

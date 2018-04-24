@@ -1,0 +1,58 @@
+@import '~components/style/mixins';
+
+.tabs-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .tab-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        background-color:#FFF;
+        .item-tab {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            height: 0.88rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            font-size: 0.32rem;
+            &:after {
+                position: absolute;
+                content: '';
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-bottom: 0.02rem solid #E0E0E0;
+            }
+            &.active {
+                &:after {
+                    border-bottom: 0.04rem solid #448FF2;
+                }
+            }
+        }
+    }
+    .tab-content {
+        flex: 1;
+        width: 100%;
+        position: relative;
+        .tab-pane {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

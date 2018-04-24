@@ -1,0 +1,54 @@
+#footer{
+    width: 100%;
+    color:#FFF;
+    padding:15px 0;
+    background-color:#000;
+    .footer_copy{
+        padding-bottom:7px;
+    }
+    .footer_icon{
+        font-size:0;
+        a{
+            margin-left:10px;
+            display:inline-block;
+            width:76px;height:29px;
+        }
+        .item_icon,.item_icon2,.item_icon3,.item_icon4{
+            display:block;
+            width:76px;height:29px;
+        }
+        .item_icon{
+            background:transparent url("img/footer_icon2.png") scroll 0 0 no-repeat;
+            &.v{
+                background-position:-684px 0;
+            }
+            &.a{
+                background-position:-608px 0;
+            }
+            &.norton{
+                background-position:-532px 0;
+            }
+            &.bd{
+                background-position:-380px 0;
+            }
+            &.ks{
+                background-position:-836px 0;
+            }
+            &.a{
+                background-position:-608px 0;
+            }
+            &.a{
+                background-position:-608px 0;
+            }
+        }
+        .item_icon2{
+            background:transparent url("img/i_lo2.png") scroll 0 0 no-repeat;
+        }
+        .item_icon3{
+            background:transparent url("img/i_lo3.png") scroll 0 0 no-repeat;
+        }
+        .item_icon4{
+            background:transparent url("img/footer_icon.png") scroll 0 0 no-repeat;
+        }
+    }
+}
