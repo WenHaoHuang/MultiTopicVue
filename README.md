@@ -13,15 +13,18 @@ A Vue.js project for topic
 
 ## 目录结构
 
-> build
-> <br> src
->> common
->> <br> components
->> <br> filter
->> <br> pages
->>> demo
->>>> assets
->>>> <br> static
->>>> <br> App.vue
->>>> <br> main.js
->>>> <br> template.html
+    |── build
+    |── dist
+    |── src
+    │   |── common
+    │   |── components
+    │   |── filter
+    │   |── pages
+    │   |   └── demo
+    │   |       |── assets
+    │   |       |── static
+    │   |       |── App.vue
+    │   |       |── main.js
+    │   |       └── template.js
+    │   └── static
+    └── README.md
