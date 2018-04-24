@@ -15,13 +15,13 @@ A Vue.js project for topic
 
 > build
 > src
->    > common
->    > components
->    > filter
->    > pages
->    >    > demo
->    >    >     > assets
->    >    >     > static
->    >    >     > App.vue
->    >    >     > main.js
->    >    >     > template.html
+>> common
+>> components
+>> filter
+>> pages
+>>> demo
+>>>> assets
+>>>> static
+>>>> App.vue
+>>>> main.js
+>>>> template.html
