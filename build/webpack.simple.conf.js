@@ -4,9 +4,12 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./webpack.config')
+const ENV = process.env
 
 const webpackConfig = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? config.build.devtool : false,
@@ -16,6 +19,14 @@ const webpackConfig = merge(baseWebpackConfig, {
             extract: true,
             usePostCSS: true
         })
+    },
+    entry: {
+        app: './src/pages/' + ENV.npm_package_DIR + '/main.js'
+    },
+    output: {
+        path: utils.resolve('./dist/' + ENV.npm_package_DIR),
+        filename: 'static/js/[name].js?v=[hash:4]',
+        publicPath: config.build.assetsPublicPath
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -41,37 +52,25 @@ const webpackConfig = merge(baseWebpackConfig, {
         }),
         new webpack.HashedModuleIdsPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks (module) {
-                return (
-                    module.resource &&
-                    /\.js$/.test(module.resource) &&
-                    module.resource.indexOf(
-                        path.join(__dirname, '../node_modules')
-                    ) === 0
-                )
-            }
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            minChunks: Infinity
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'app',
-            async: 'vendor-async',
-            children: true,
-            minChunks: 3
-        }),
         new CopyWebpackPlugin([
             {
-                from: utils.resolve(`./src/pages/${pk.DIR}/static`),
-                to: process.env.NODE_ENV === 'production'
-                    ? config.build.assetsSubDirectory
-                    : config.dev.assetsSubDirectory,
+                from: utils.resolve(`./src/pages/${ENV.npm_package_DIR}/static`),
+                to: utils.resolve(`./dist/${ENV.npm_package_DIR}/static`),
                 ignore: ['.*']
             }
         ]),
+        new HtmlWebpackPlugin({
+            static:`/static`,
+            template: `./src/pages/${ENV.npm_package_DIR}/template.ejs`,
+            filename: 'index.html',
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
+            chunksSortMode: 'dependency'
+        }),
     ]
 })
 if (config.build.bundleAnalyzerReport) {

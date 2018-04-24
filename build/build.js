@@ -5,7 +5,7 @@ const ora = require('ora')
 const rm = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.prod.conf')
+const webpackConfig = require('./webpack.simple.conf')
 const pk = require('./../package.json')
 
 rm(path.join('./dist/' + pk.DIR), err => {

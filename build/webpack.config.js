@@ -1,5 +1,4 @@
 const utils = require('./utils')
-const pk = require('./../package.json')
 
 module.exports = {
     dev:{
@@ -19,10 +18,9 @@ module.exports = {
     },
     build:{
         NODE_ENV: '"production"',
-        index: utils.resolve('./dist/index.html'),
         assetsRoot: utils.resolve('./dist'),
-        assetsSubDirectory: utils.resolve(`./dist/${pk.DIR}/static`),
-        assetsPublicPath: '/' + pk.DIR + '/',
+        assetsSubDirectory: utils.resolve('static'),
+        assetsPublicPath: './',
         productionSourceMap: false,
         devtool: '#source-map',
         productionGzip: false,

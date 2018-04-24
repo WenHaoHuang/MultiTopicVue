@@ -1,16 +1,11 @@
 const path = require('path')
-const glob = require('glob')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const PAGE_PATH = path.resolve(__dirname, '../src/pages')
-const pk = require('./../package.json')
 
 exports.resolve = (dir) => {
-    return path.join(__dirname, '..', dir)
+    return path.join(__dirname, '../', dir)
 }
 exports.assetsPath = function (_path) {
     const assetsSubDirectory = ''
-
     return path.posix.join(assetsSubDirectory, _path)
 }
 exports.cssLoaders = function (options) {
@@ -51,6 +46,7 @@ exports.cssLoaders = function (options) {
             return ['vue-style-loader'].concat(loaders)
         }
     }
+
     return {
         css: generateLoaders(),
         postcss: generateLoaders(),
@@ -84,7 +80,7 @@ exports.createNotifierCallback = () => {
         const filename = error.file && error.file.split('!').pop()
 
         notifier.notify({
-            title: pk.name,
+            title: process.env.npm_package_name,
             message: severity + ': ' + error.name,
             subtitle: filename || '',
             icon: path.join(__dirname, 'logo.png')

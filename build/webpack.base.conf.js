@@ -1,23 +1,9 @@
-const path = require('path')
 const utils = require('./utils')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
-const pk = require('./../package.json')
-const config = require('./webpack.config')
 
 module.exports = {
-    context: path.resolve(__dirname, '../'),
-    entry: {
-        app: './src/pages/' + pk.DIR + '/main.js'
-    },
-    output: {
-        path: utils.resolve('./dist/' + pk.DIR),
-        filename: 'static/js/[name].js?v=[hash:4]',
-        publicPath: process.env.NODE_ENV === 'production'
-            ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath
-    },
+    context: utils.resolve('./'),
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
@@ -29,27 +15,14 @@ module.exports = {
             '@': utils.resolve(`src/pages`)
         }
     },
-    plugins: [
+    plugins:[
         new CopyWebpackPlugin([
             {
-                from: utils.resolve(`./src/pages/${pk.DIR}/static`),
-                to: process.env.NODE_ENV === 'production'
-                    ? config.build.assetsSubDirectory
-                    : config.dev.assetsSubDirectory,
+                from: utils.resolve(`./src/static`),
+                to: utils.resolve(`./dist/static`),
                 ignore: ['.*']
             }
         ]),
-        new HtmlWebpackPlugin({
-            template: `./src/pages/${pk.DIR}/template.html`,
-            filename: 'index.html',
-            inject: true,
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
-            },
-            chunksSortMode: 'dependency'
-        })
     ],
     module: {
         rules: [

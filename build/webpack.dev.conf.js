@@ -2,12 +2,14 @@
 const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const chalk = require('chalk')
 const ip = require('ip')
 const config = require('./webpack.config')
+const ENV = process.env
 
 const HOST = ip.address()
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -17,6 +19,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap, usePostCSS: true})
     },
     devtool: config.dev.devtool,
+    entry: {
+        app: './src/pages/' + ENV.npm_package_DIR + '/main.js'
+    },
+    output: {
+        path: utils.resolve('./dist/' + ENV.npm_package_DIR),
+        filename: 'static/js/[name].js?v=[hash:4]',
+        publicPath: ENV.NODE_ENV === 'production'
+            ? config.build.assetsPublicPath
+            : config.dev.assetsPublicPath
+    },
     devServer: {
         clientLogLevel: 'warning',
         historyApiFallback: true,
@@ -43,6 +55,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        new HtmlWebpackPlugin({
+            template: `./src/pages/${ENV.npm_package_DIR}/template.ejs`,
+            filename: 'index.html',
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
+            chunksSortMode: 'dependency'
+        })
     ]
 })
 
