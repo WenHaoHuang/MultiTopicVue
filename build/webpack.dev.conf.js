@@ -56,6 +56,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
+            static:'/static',
             template: `./src/pages/${ENV.npm_package_DIR}/template.ejs`,
             filename: 'index.html',
             inject: true,
