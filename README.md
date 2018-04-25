@@ -14,7 +14,7 @@ A Vue.js project for topic
 >> 根据package.json的DIR构建单个项目
 
 #### 全部打包
-> npm run dist
+> npm run build:all
 >> 构建src/pages下所有项目，排除_开头项目
 
 ## 目录结构
