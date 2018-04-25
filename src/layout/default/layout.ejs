@@ -8,15 +8,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="msapplication-tap-highlight" content="no"/>
-    <title>运营品宣专题页</title>
+    <title><%= pageTitle %></title>
     <script>var width = document.documentElement.clientWidth, fontSize = width / 750 * 100;
-    document.documentElement.style.fontSize = fontSize + "px";</script>
-    <link rel="shortcut icon" type="image/x-icon" href="<%= htmlWebpackPlugin.options.static %>/img/favicon.ico">
-    <link type="image/x-icon" href="<%= htmlWebpackPlugin.options.static %>/img/custom_icon.png"
-          rel="apple-touch-icon-precomposed">
+        document.documentElement.style.fontSize = fontSize + "px";</script>
 </head>
 <body>
-<div id="app"></div>
+<%= content %>
 </body>
 </html>
-

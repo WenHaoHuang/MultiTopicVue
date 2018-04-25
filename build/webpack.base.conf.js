@@ -18,6 +18,7 @@ module.exports = {
             'components': utils.resolve('src/components'),
             'filter': utils.resolve('src/filter'),
             'common': utils.resolve('src/common'),
+            'layout': utils.resolve('src/layout'),
             '@': utils.resolve(`src/pages`)
         }
     },
@@ -41,6 +42,10 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: [utils.resolve('src'), utils.resolve('test'), utils.resolve('node_modules/webpack-dev-server/client'), utils.resolve('node_modules/vue-echarts-v3/src')]
+            },
+            {
+                test: /\.ejs$/,
+                loader: 'ejs-loader'
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

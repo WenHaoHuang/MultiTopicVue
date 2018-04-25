@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        hahdshafhsafefsdafweasdDSADÅ
+        this is vue content
     </div>
 </template>
 
