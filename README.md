@@ -20,6 +20,8 @@ A Vue.js project for topic
     |   |── utils.js                 // 公共方法
     |   |── vue-loader.conf.js       // vue-loader配置
     |   |── webpack.base.js          // 开发、构建通用配置
+    |   |── webpack.config.js        // 开发、构建差异配置常量
+    |   |── webpack.dev.conf.js      // 开发配置信息
     |   |── webpack.prod.js          // 构建通用配置
     |   └── webpack.prod.conf.js     // 构建单个项目配置
     |   └── webpack.prod.all.conf.js // 构建单个项目配置
