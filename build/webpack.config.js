@@ -20,7 +20,7 @@ module.exports = {
         NODE_ENV: '"production"',
         assetsRoot: utils.resolve('./dist'),
         assetsSubDirectory: utils.resolve('static'),
-        assetsPublicPath: './',
+        assetsPublicPath: '/',
         productionSourceMap: false,
         devtool: '#source-map',
         productionGzip: false,

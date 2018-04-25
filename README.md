@@ -14,6 +14,15 @@ A Vue.js project for topic
 ## 目录结构
 
     |── build
+    |   |── build.all.js             // 构建src/pages下所有
+    |   |── build.js                 // 构建单个项目
+    |   |── init.js                  // 新建单个项目，并把项目信息写入package.json
+    |   |── utils.js                 // 公共方法
+    |   |── vue-loader.conf.js       // vue-loader配置
+    |   |── webpack.base.js          // 开发、构建通用配置
+    |   |── webpack.prod.js          // 构建通用配置
+    |   └── webpack.prod.conf.js     // 构建单个项目配置
+    |   └── webpack.prod.all.conf.js // 构建单个项目配置
     |── dist
     |── src
     │   |── common

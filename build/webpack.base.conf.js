@@ -1,9 +1,15 @@
 const utils = require('./utils')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
+const config = require('./webpack.config')
 
 module.exports = {
     context: utils.resolve('./'),
+    output: {
+        path: config.build.assetsRoot,
+        filename: '[name]/app.js?v=[hash:4]',
+        publicPath: config.build.assetsPublicPath
+    },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {

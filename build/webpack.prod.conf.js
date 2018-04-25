@@ -1,4 +1,3 @@
-const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -10,6 +9,9 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./webpack.config')
 const ENV = process.env
+const fileName = `${ENV.npm_package_DIR}/static`
+const entries = {}
+entries[fileName] = `./src/pages/${ENV.npm_package_DIR}/main.js`
 
 const webpackConfig = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? config.build.devtool : false,
@@ -20,14 +22,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             usePostCSS: true
         })
     },
-    entry: {
-        app: './src/pages/' + ENV.npm_package_DIR + '/main.js'
-    },
-    output: {
-        path: utils.resolve('./dist/' + ENV.npm_package_DIR),
-        filename: 'static/js/[name].js?v=[hash:4]',
-        publicPath: config.build.assetsPublicPath
-    },
+    entry: entries,
     plugins: [
         new webpack.DefinePlugin({
             'process.env': config.build.NODE_ENV
@@ -42,7 +37,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             parallel: true
         }),
         new ExtractTextPlugin({
-            filename: utils.assetsPath('static/css/[name].css?v=[contenthash:4]'),
+            filename: utils.assetsPath('[name]/app.css?v=[contenthash:4]'),
             allChunks: true,
         }),
         new OptimizeCSSPlugin({
@@ -62,7 +57,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             static:`/static`,
             template: `./src/pages/${ENV.npm_package_DIR}/template.ejs`,
-            filename: 'index.html',
+            filename: `${ENV.npm_package_DIR}/index.html`,
             inject: true,
             minify: {
                 removeComments: true,
