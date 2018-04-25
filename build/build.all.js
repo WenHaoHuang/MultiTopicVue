@@ -5,12 +5,11 @@ const ora = require('ora')
 const rm = require('rimraf')
 const chalk = require('chalk')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.prod.conf')
-const ENV = process.env
+const webpackConfig = require('./webpack.prod.all.conf')
 
-rm(path.join('./dist/' + ENV.npm_package_DIR), err => {
+rm(path.join('./dist'), err => {
     if (err) throw err
-    console.log(chalk.cyan('> ' + ENV.npm_package_DIR + '  已清空.\n'))
+    console.log(chalk.cyan('> dist 已清空.\n'))
     const spinner = ora('building for production...')
     spinner.start()
     webpack(webpackConfig, (err, stats) => {
@@ -32,4 +31,3 @@ rm(path.join('./dist/' + ENV.npm_package_DIR), err => {
         console.log(chalk.cyan('  Build complete.\n'))
     })
 })
-

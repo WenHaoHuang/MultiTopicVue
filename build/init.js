@@ -19,7 +19,7 @@ if (TPL != 'pc' && TPL != 'wap') {
 rm(path.join(`./src/pages/${DIR}/${TPL}`), err => {
     if (err) throw err
     let order = `mkdir -p ./src/pages/${DIR}/${TPL}`
-    order += '&& cp -Rf ' + utils.resolve(`./src/pages/demo/${TPL} `) + utils.resolve(`./src/pages/${DIR}`)
+    order += '&& cp -Rf ' + utils.resolve(`./src/pages/_demo/${TPL} `) + utils.resolve(`./src/pages/${DIR}`)
     const orderStatus = child.execSync(order)
     if(orderStatus){
         console.log(chalk.cyan(`> ${DIR}/${TPL} 已清空并重新创建 成功.\n`))

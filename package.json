@@ -5,11 +5,12 @@
   "main": "index.js",
   "author": "wenhao.huang",
   "license": "ISC",
-  "DIR": "demo/wap",
+  "DIR": "test/pc",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build": "node build/build.js",
     "start": "npm run dev",
+    "build:all": "node build/build.all.js",
     "init": "node build/init.js"
   },
   "dependencies": {
