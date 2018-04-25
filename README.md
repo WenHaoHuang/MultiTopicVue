@@ -47,10 +47,12 @@ A Vue.js project for topic
     │   |── filter
     │   |── pages
     │   |   └── demo
-    │   |       |── assets
-    │   |       |── static
-    │   |       |── App.vue
-    │   |       |── main.js
-    │   |       └── template.js
+    │   |       |── pc
+    │   |       └── wap
+    │   |           |── assets
+    │   |           |── static
+    │   |           |── App.vue
+    │   |           |── main.js
+    │   |           └── template.js
     │   └── static
     └── README.md
