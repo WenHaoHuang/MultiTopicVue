@@ -1,18 +1,18 @@
 <template>
     <div id="app">
-        hahdshafhsafefsdafwe
+        this is content
     </div>
 </template>
 
 <script>
     export default {
-        name: 'App',
-        mounted(){
-            this.$msg('1111')
+        name: "app",
+        created(){
+            this.$msg('开启一段奇妙的旅程')
         }
     }
 </script>
 
 <style lang="scss">
-    @import "./assets/style";
+    @import "./style.scss";
 </style>

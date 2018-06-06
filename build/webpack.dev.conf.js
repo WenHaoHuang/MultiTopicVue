@@ -24,7 +24,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     },
     output: {
         path: utils.resolve('./dist/' + ENV.npm_package_DIR),
-        filename: 'static/js/[name].js?v=[hash:4]',
+        filename: 'static/[name].js',
         publicPath: ENV.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
             : config.dev.assetsPublicPath
@@ -39,7 +39,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         port: PORT || 8080,
         open: config.dev.autoOpenBrowser,
         overlay: config.dev.errorOverlay
-            ? { warnings: false, errors: true }
+            ? {warnings: false, errors: true}
             : false,
         publicPath: config.dev.assetsPublicPath,
         proxy: config.dev.proxyTable,
@@ -56,8 +56,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
-            static:'/static',
-            template: `./src/pages/${ENV.npm_package_DIR}/template.ejs`,
+            libs: '/libs',
+            template: `./src/pages/${ENV.npm_package_DIR}/template.js`,
             filename: 'index.html',
             inject: true,
             minify: {

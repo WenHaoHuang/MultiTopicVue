@@ -1,0 +1,93 @@
+/**
+ * @author : wenhao.huang
+ * @date   : 2017/12/28
+ */
+@import 'mixins';
+
+$typeArray: default primary success info warning danger;
+
+@each $type in $typeArray {
+    @if ($type == default) {
+        .btn {
+            @include button();
+        }
+    } @else {
+        .btn-#{$type} {
+            $color: unquote('$' + $type);
+            @include button($type);
+        }
+    }
+}
+
+.btn {
+    &.btn-lg {
+        font-size: 0.32*$unit;
+        padding: 0.28*$unit 0.4*$unit;
+    }
+    &.btn-md {
+        font-size: 0.26*$unit;
+        padding: 0.2*$unit 0.32*$unit;
+    }
+    &.btn-sm {
+        font-size: 0.24*$unit;
+        padding: 0.16*$unit 0.24*$unit;
+        border-radius: 0.06*$unit;
+    }
+    &.btn-xs {
+        font-size: 0.20*$unit;
+        padding: 0.12*$unit 0.16*$unit;
+        border-radius: 0.06*$unit;
+    }
+    &.btn-row {
+        width: 100%;
+    }
+}
+
+.button-group {
+    font-size: 0;
+    .btn {
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: 0;
+        }
+        &:not(:first-child) {
+            &:not(:last-child) {
+                border-left-color: rgba($white, 0.5);
+                border-right-color: rgba($white, 0.5);
+                border-radius: 0;
+                margin-left: -0.02*$unit;
+            }
+        }
+    }
+}
+
+.i-check {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 0.4rem;
+    vertical-align: text-bottom;
+    position: relative;
+    background-color: $white;
+    box-shadow: inset 0 0 0 0.02rem $light;
+    &:before {
+        position: absolute;
+        content: '';
+        width: 0.2rem;
+        height: 0.12rem;
+        left: 0.1rem;
+        top: 0.1rem;
+        border-left: 0.02rem solid $white;
+        border-bottom: 0.02rem solid $white;
+        transform: rotate(-45deg);
+    }
+    &.checked {
+        box-shadow: none;
+        background-color: $primary;
+    }
+}

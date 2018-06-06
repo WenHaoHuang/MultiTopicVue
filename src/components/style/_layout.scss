@@ -1,0 +1,156 @@
+/**
+ * @author: wenhao.huang
+ * @date:   2017/12/24
+ * @module:
+ */
+@import 'mixins';
+
+.flex {
+    @include flex(row, flex-start, flex-start);
+    .flex-bd {
+        flex: 1;
+    }
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+    .flex-hd, .flex-bd, .flex-ft {
+        width: 100%;
+    }
+}
+
+.flex-justify-start {
+    justify-content: flex-start;
+}
+
+.flex-justify-end {
+    justify-content: flex-end;
+}
+
+.flex-justify-center {
+    justify-content: center;
+}
+
+.flex-justify-between {
+    justify-content: space-between;
+}
+
+.flex-justify-around {
+    justify-content: space-around;
+}
+
+.flex-align-start {
+    align-items: flex-start;
+}
+
+.flex-align-end {
+    align-items: flex-end;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+// margin padding 留白设置
+$gutterType: margin padding;
+$direction: top right bottom left;
+@each $GT in $gutterType {
+    $type: 'm';
+    @if ($GT == 'padding') {
+        $type: 'p';
+    }
+    @each $dir in $direction {
+        $D: 't';
+        @if ($dir == 'right') {
+            $D: 'r';
+        } @else if ($dir == 'bottom') {
+            $D: 'b';
+        } @else if ($dir == 'left') {
+            $D: 'l';
+        }
+
+        @for $i from 0 to 11 {
+            @if ($i == 0) {
+                .#{$type}#{$D} {
+                    @include gutter($GT, $dir, $i);
+                }
+            } @else {
+                .#{$type}#{$D}#{$i*10} {
+                    @include gutter($GT, $dir, $i);
+                }
+            }
+        }
+    }
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.clearfix{
+    &:after{
+        content:'';
+        display:table;
+        clear:both;
+        font-size:0;
+        line-height:0;
+    }
+}
+
+.cells-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .cell_bd {
+        flex: 1;
+    }
+}
+
+.cells-line {
+    position: relative;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 0.02rem solid $lineColor;
+    }
+}
+
+.cells-before {
+    position: relative;
+    padding: 0.2rem 0.3rem;
+    & + .cells-before {
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0.3rem;
+            right: 0;
+            top: 0;
+            border-top: 0.02rem solid $lineColor;
+        }
+    }
+}
+
+.cells-arrow {
+    position: relative;
+    .cell_ft {
+        display: block;
+        content: '';
+        width: 0.24rem;
+        height: 0.24rem;
+        border-top: 0.02rem solid $light;
+        border-right: 0.02rem solid $light;
+        transform: rotate(45deg);
+    }
+}

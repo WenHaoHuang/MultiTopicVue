@@ -16,6 +16,14 @@ if (TPL != 'pc' && TPL != 'wap') {
     process.exit()
 }
 
+const RUN_DIR = fs.existsSync(`./src/pages/${DIR}/${TPL}`)
+
+if (RUN_DIR) {
+    console.log(chalk.red(`> 目标路径已存在，为防止误操作，请手动操作！
+`))
+    process.exit(0)
+}
+
 rm(path.join(`./src/pages/${DIR}/${TPL}`), err => {
     if (err) throw err
     let order = `mkdir -p ./src/pages/${DIR}/${TPL}`

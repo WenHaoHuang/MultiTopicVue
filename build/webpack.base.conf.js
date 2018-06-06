@@ -1,35 +1,31 @@
 const utils = require('./utils')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
 const config = require('./webpack.config')
+const webpack = require('webpack')
+
+const $kv = require('../../config/kv.json')
+const $domain = $kv.domain
 
 module.exports = {
     context: utils.resolve('./'),
     output: {
         path: config.build.assetsRoot,
-        filename: '[name]/app.js?v=[hash:4]',
-        publicPath: config.build.assetsPublicPath
+        filename: '[name]/app.js?v=[hash:4]'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            'static': utils.resolve('src/static'),
-            'components': utils.resolve('src/components'),
-            'filter': utils.resolve('src/filter'),
+            'components': utils.resolve('components'),
             'common': utils.resolve('src/common'),
             'layout': utils.resolve('src/layout'),
-            '@': utils.resolve(`src/pages`)
+            '@': utils.resolve(`src`)
         }
     },
     plugins:[
-        new CopyWebpackPlugin([
-            {
-                from: utils.resolve(`./src/static`),
-                to: utils.resolve(`./dist/static`),
-                ignore: ['.*']
-            }
-        ]),
+        new webpack.DefinePlugin({
+            '$domain': JSON.stringify($domain)
+        })
     ],
     module: {
         rules: [
@@ -41,7 +37,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [utils.resolve('src'), utils.resolve('test'), utils.resolve('node_modules/webpack-dev-server/client'), utils.resolve('node_modules/vue-echarts-v3/src')]
+                include: [utils.resolve('src'), utils.resolve('test'), utils.resolve('node_modules/webpack-dev-server/client')]
             },
             {
                 test: /\.ejs$/,
@@ -52,7 +48,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10240,
-                    name: utils.assetsPath('static/img/[name].[ext]?v=[hash:4]')
+                    name: utils.assetsPath('static/img/[hash:8].[ext]')
                 }
             },
             {

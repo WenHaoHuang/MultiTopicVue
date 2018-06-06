@@ -1,6 +1,6 @@
 /**
- * @author : wenhao.huang
- * @date   : 2018/3/12
+ * @author : huangwenhao
+ * @date   : 2018/6/4
  */
 
 import Vue from 'vue'
